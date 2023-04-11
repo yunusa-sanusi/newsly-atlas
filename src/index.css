@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Ancient Medium';
+  src: url('./assets/webkit-fonts/ancient_medium-webfont.woff') format('woff'),
+    url('./assets/webkit-fonts/ancient_medium-webfont.woff2') format('woff2'),
+    url('./assets/webkit-fonts/ancient-medium.ttf') format('truetype');
+}
+
+h1 {
+  font-family: 'Ancient Medium', serif;
+}
