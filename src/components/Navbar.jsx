@@ -4,15 +4,24 @@ import moment from 'moment';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
 
+import { useNewsContext } from '../contexts/NewsContext';
+import Loader from './Loader';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const sliderRef = useRef(null);
+  const { latestNewsLoading, mostPopularNewsLoading, newsSections } =
+    useNewsContext();
 
-  const date = moment().format('MMM DD, YYYY');
+  const date = moment().format('dddd, MMMM DD, YYYY');
+
+  const slideOutAnimation = 'right-[0px] animate-openmenu block';
+  const slideInAnimation = 'right-[-307px] animate-closemenu';
 
   const openMenu = () => {
     setIsMenuOpen(true);
     sliderRef.current.style.display = 'flex';
+    sliderRef.current.style.width = '288px';
   };
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -20,109 +29,62 @@ const Navbar = () => {
     clearTimeout(() => (sliderRef.current.style.display = 'none'), 500);
   };
 
-  const slideOutAnimation = 'right-[0px] animate-openmenu block';
-  const slideInAnimation = 'right-[-307px] animate-closemenu';
-
   return (
     <>
       <header className="w-full fixed z-10 top-0 border-b border-b-[#c4c4c4] py-3">
-        <nav className="w-[95%] md:w-[90%] mx-auto flex justify-between items-center gap-x-3 relative">
-          <div className="flex items-center h-full gap-x-6 md:border-r md:border-r-[#c4c4c4] md:pr-8">
-            <NavLink to="/" className="logo">
-              newsly atlas
-            </NavLink>
-            <small className="hidden md:block text-lightGrey font-semibold mt-[1.5px]">
-              {date}
-            </small>
+        <nav className="w-[95%] md:w-[90%] mx-auto flex justify-between items-center gap-x-3">
+          <div className="hidden md:block">
+            <p className="text-darkGrey font-semibold text-sm">{date}</p>
           </div>
 
-          <div className="hidden md:block">
-            <NavLink
-              to="#"
-              className="hover:text-customRed transition-all duration-200 text-sm font-semibold mx-2"
-            >
-              California
-            </NavLink>
-            <NavLink
-              to="#"
-              className="hover:text-customRed transition-all duration-200 text-sm font-semibold mx-2"
-            >
-              Entertainment
-            </NavLink>
-            <NavLink
-              to="#"
-              className="hover:text-customRed transition-all duration-200 text-sm font-semibold mx-2"
-            >
-              Sport
-            </NavLink>
-            <NavLink
-              to="#"
-              className="hover:text-customRed transition-all duration-200 text-sm font-semibold mx-2"
-            >
-              Business
-            </NavLink>
-            <NavLink
-              to="#"
-              className="hover:text-customRed transition-all duration-200 text-sm font-semibold mx-2"
-            >
-              Politics
-            </NavLink>
-          </div>
+          <NavLink to="/" className="logo text-3xl">
+            newsly <span className="text-customRed">atlas</span>
+          </NavLink>
 
           <div
             className={`${
               isMenuOpen ? slideOutAnimation : slideInAnimation
-            } "mobile-menu w-64 py-3 hidden flex-col absolute top-16 right-[-307px] rounded-md shadow-sm shadow-[#7b7b7b] bg-darkGrey text-white"`}
+            } "w-96 h-auto hidden fixed top-0 right-[-307px] shadow-sm shadow-[#7b7b7b] bg-white text-white "`}
             ref={sliderRef}
+            onMouseLeave={closeMenu}
           >
-            <div className="absolute top-3 right-2 cursor-pointer"></div>
-            <NavLink
-              to="#"
-              className="text-white transition-all duration-300 text-sm font-semibold mx-2 hover:bg-customRed p-3 rounded-sm"
-            >
-              California
-            </NavLink>
-            <NavLink
-              to="#"
-              className="text-white transition-all duration-300 text-sm font-semibold mx-2 hover:bg-customRed p-3 rounded-sm"
-            >
-              Entertainment
-            </NavLink>
-            <NavLink
-              to="#"
-              className="text-white transition-all duration-300 text-sm font-semibold mx-2 hover:bg-customRed p-3 rounded-sm"
-            >
-              Sport
-            </NavLink>
-            <NavLink
-              to="#"
-              className="text-white transition-all duration-300 text-sm font-semibold mx-2 hover:bg-customRed p-3 rounded-sm"
-            >
-              Business
-            </NavLink>
-            <NavLink
-              to="#"
-              className="text-white transition-all duration-300 text-sm font-semibold mx-2 hover:bg-customRed p-3 rounded-sm"
-            >
-              Politics
-            </NavLink>
+            <div className="absolute top-3 right-5 cursor-pointer">
+              <MdClose
+                size={20}
+                onClick={closeMenu}
+                className="cursor-pointer transition-all duration-300 text-darkGrey"
+              />
+            </div>
+            <ul className="w-full h-[100vh] overflow-x-hidden overflow-y-scroll flex flex-col">
+              {latestNewsLoading && mostPopularNewsLoading ? (
+                <Loader size={18} />
+              ) : (
+                newsSections.map((news, index) => {
+                  return (
+                    <NavLink
+                      key={index}
+                      to={`sections/${news.toLowerCase().split(' ').join('-')}`}
+                      className={`${
+                        index === newsSections.length - 1
+                          ? 'border-b-0'
+                          : 'border-b border-b-[#c4c4c4]'
+                      } transition-all duration-300 text-sm font-semibold hover:text-customRed py-4 w-full text-darkGrey`}
+                    >
+                      <span className="pl-3">{news}</span>
+                    </NavLink>
+                  );
+                })
+              )}
+            </ul>
           </div>
 
-          <div className="flex gap-x-5 items-center md:hidden">
+          <div className="flex gap-x-5 items-center">
             <div>
-              {isMenuOpen ? (
-                <MdClose
-                  size={20}
-                  onClick={closeMenu}
-                  className="cursor-pointer transition-all duration-300"
-                />
-              ) : (
-                <BiMenuAltRight
-                  size={20}
-                  className="cursor-pointer transition-all duration-300"
-                  onClick={openMenu}
-                />
-              )}
+              <BiMenuAltRight
+                size={20}
+                className="cursor-pointer transition-all duration-300"
+                onClick={openMenu}
+              />
             </div>
           </div>
         </nav>

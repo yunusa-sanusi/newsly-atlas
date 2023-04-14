@@ -33,6 +33,9 @@ export default {
         veryLightGrey: '#f8f8f8',
         white: '#ffffff',
       },
+      fontFamily: {
+        ancientMedium: 'Ancient Medium',
+      },
     },
   },
   plugins: [],
