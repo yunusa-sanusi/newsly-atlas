@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { useNewsContext } from './contexts/NewsContext';
-import Home from './pages/Home';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import News from './pages/News';
 
 function App() {
-  const { newsSections, getNewsSections, latestNews, mostPopularNews } =
-    useNewsContext();
+  const { getNewsSections, latestNews, mostPopularNews } = useNewsContext();
 
   useEffect(() => {
     getNewsSections();
@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route element={<Navbar />}>
           <Route index element={<Home />} />
+          <Route path="news/:section" element={<News />} />
         </Route>
       </Routes>
     </BrowserRouter>

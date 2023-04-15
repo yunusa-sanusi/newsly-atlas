@@ -25,14 +25,11 @@ export const NewsProvider = ({ children }) => {
 
   const getNewsSections = () => {
     const latestNewSections = [
+      'All',
       ...new Set(latestNews.map((news) => news.section)),
     ];
-    const mostPopularNewsSections = [
-      ...new Set(mostPopularNews.map((news) => news.section)),
-    ];
-    const combinedSections = [...latestNewSections, ...mostPopularNewsSections];
 
-    setNewsSections([...new Set(combinedSections)].sort());
+    setNewsSections(latestNewSections);
   };
 
   return (

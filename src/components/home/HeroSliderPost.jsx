@@ -23,9 +23,7 @@ const HeroSliderPost = ({ story }) => {
           <h1 className="text-2xl md:text-4xl font-bold my-3 transition-all duration-300 hover:text-customRed">
             {title}
           </h1>
-          <small className="text-sm font-semibold text-white">
-            {byline} in {section}
-          </small>
+          <small className="text-sm font-semibold text-white">{byline}</small>
         </Link>
       </div>
     </article>

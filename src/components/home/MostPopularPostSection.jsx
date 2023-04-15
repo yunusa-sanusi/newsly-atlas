@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle';
 
 const MostPopularPostSection = () => {
   const { mostPopularNews } = useNewsContext();
-  console.log(mostPopularNews[0]);
+
   return (
     <section className="w-[95%] md:w-[90%] mx-auto">
       <SectionTitle text="most popular" />

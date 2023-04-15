@@ -63,7 +63,7 @@ const Navbar = () => {
                   return (
                     <NavLink
                       key={index}
-                      to={`sections/${news.toLowerCase().split(' ').join('-')}`}
+                      to={`news/${news.toLowerCase().split(' ').join('-')}`}
                       className={`${
                         index === newsSections.length - 1
                           ? 'border-b-0'
