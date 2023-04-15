@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const HeroSliderPost = ({ story }) => {
-  const { byline, multimedia, title, url } = story;
+  const { byline, multimedia, section, title, url } = story;
 
   const heroBackgroundStyles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${multimedia[0].url})`,
@@ -23,7 +23,9 @@ const HeroSliderPost = ({ story }) => {
           <h1 className="text-2xl md:text-4xl font-bold my-3 transition-all duration-300 hover:text-customRed">
             {title}
           </h1>
-          <small className="text-sm font-semibold text-white">{byline}</small>
+          <small className="text-sm font-semibold text-white">
+            {byline} in {section}
+          </small>
         </Link>
       </div>
     </article>

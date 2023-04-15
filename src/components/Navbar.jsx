@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full fixed z-10 top-0 border-b border-b-[#c4c4c4] py-3">
+      <header className="w-full bg-white fixed z-10 top-0 border-b border-b-[#c4c4c4] py-3">
         <nav className="w-[95%] md:w-[90%] mx-auto flex justify-between items-center gap-x-3">
           <div className="hidden md:block">
             <p className="text-darkGrey font-semibold text-sm">{date}</p>

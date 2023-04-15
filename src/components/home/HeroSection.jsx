@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import { useNewsContext } from '../contexts/NewsContext';
+import { useNewsContext } from '../../contexts/NewsContext';
 import HeroSliderPost from './HeroSliderPost';
 
 const HeroSection = () => {
