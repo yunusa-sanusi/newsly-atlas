@@ -1,6 +1,7 @@
 import HeroSection from '../components/home/HeroSection';
 import MostPopularPostSection from '../components/home/MostPopularPostSection';
 import LatestPostSection from '../components/home/LatestPostSection';
+import Footer from '../components/footer/Footer';
 
 const Home = () => {
   return (

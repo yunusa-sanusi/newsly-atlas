@@ -2,9 +2,10 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useNewsContext } from '../contexts/NewsContext';
 import Article from '../components/Article';
+import Loader from '../components/Loader';
 
 const News = () => {
-  const { latestNews } = useNewsContext();
+  const { latestNews, latestNewsLoading } = useNewsContext();
   const { section } = useParams();
 
   const filteredNews = latestNews.filter((news) => {
@@ -28,10 +29,16 @@ const News = () => {
           {section === 'all' ? 'All' : pageTitle} News
         </h1>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-5 mt-8">
-          {filteredNews.length > 0 &&
+          {latestNewsLoading ? (
+            <div className="col-span-3 mb-3">
+              <Loader size={32} />
+            </div>
+          ) : (
+            filteredNews.length > 0 &&
             filteredNews.map((news) => {
               return <Article key={news.title} news={news} />;
-            })}
+            })
+          )}
         </div>
       </section>
     </main>

@@ -6,6 +6,7 @@ import { MdClose } from 'react-icons/md';
 
 import { useNewsContext } from '../contexts/NewsContext';
 import Loader from './Loader';
+import Footer from './footer/Footer';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,6 +91,7 @@ const Navbar = () => {
         </nav>
       </header>
       <Outlet />
+      <Footer />
     </>
   );
 };

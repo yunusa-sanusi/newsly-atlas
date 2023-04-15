@@ -3,16 +3,7 @@ import { Link } from 'react-router-dom';
 import defaultImage from '../assets/default-image.jpg';
 
 const Article = ({ news }) => {
-  const {
-    abstract,
-    byline,
-    created_date,
-    des_facet,
-    multimedia,
-    section,
-    title,
-    url,
-  } = news;
+  const { abstract, created_date, multimedia, section, title, url } = news;
 
   const imageUrl = multimedia === null ? defaultImage : multimedia[2].url;
 
@@ -36,6 +27,7 @@ const Article = ({ news }) => {
             {title}
           </h2>
         </Link>
+        <p className="text-sm text-justify">{abstract}</p>
       </div>
     </article>
   );
