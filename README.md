@@ -2,6 +2,8 @@
 
 This application displays news data fetched from the New York Times API.
 
+- [App Demo](https://newsly-atlas.vercel.app/)
+
 ## Technologies Used
 
 - React

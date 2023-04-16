@@ -1,14 +1,18 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
+import defaultImage from '../assets/default-image.jpg';
+
 const LatestPost = ({ news }) => {
   const { created_date, multimedia, section, title, url } = news;
+
+  const imageUrl = multimedia === null ? defaultImage : multimedia[2].url;
 
   return (
     <article className="w-full">
       <div className="w-full">
         <Link to={url}>
-          <img src={multimedia[2].url} alt={title} className="w-full" />
+          <img src={imageUrl} alt={title} className="w-full" />
         </Link>
       </div>
       <div>
