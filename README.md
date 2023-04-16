@@ -17,7 +17,7 @@ This application displays news data fetched from the New York Times API.
 - [Top Stories API](https://api.nytimes.com/svc/topstories/v2/home.json?api-key=api-key)
 
 <div align='center'>
-- <img src='newsly-atlas-preview.gif' alt='app-preview' width='70%' />
+  <img src='newsly-atlas.gif' alt='app-preview' width='70%' />
 </div>
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
