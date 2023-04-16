@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import defaultImage from '../assets/default-image.jpg';
+import defaultImage from '../../assets/default-image.jpg';
 
 const LatestPost = ({ news }) => {
   const { created_date, multimedia, section, title, url } = news;
