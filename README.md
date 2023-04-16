@@ -2,7 +2,7 @@
 
 This application displays news data fetched from the New York Times API.
 
-- [App Demo](https://newsly-atlas.vercel.app/)
+- [App Demo](https://newsly-atlas.netlify.app/)
 
 ## Technologies Used
 
